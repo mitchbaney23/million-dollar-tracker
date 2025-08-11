@@ -4,17 +4,16 @@ import {
   setDoc, 
   getDoc, 
   getDocs, 
-  addDoc, 
   updateDoc, 
   deleteDoc,
   query,
-  where,
   orderBy,
   Timestamp
 } from 'firebase/firestore';
 import { db } from './firebase';
-import { Transaction } from '../components/CSVUpload';
-import { CategoriesData, defaultCategories } from './categorization';
+import type { Transaction } from '../components/CSVUpload';
+import type { CategoriesData } from './categorization';
+import { defaultCategories } from './categorization';
 
 export interface UserProfile {
   uid: string;

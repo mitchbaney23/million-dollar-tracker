@@ -1,4 +1,4 @@
-import { Transaction } from '../components/CSVUpload';
+import type { Transaction } from '../components/CSVUpload';
 
 export interface CategoryRule {
   keywords: string[];

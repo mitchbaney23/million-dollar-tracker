@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from './components/Dashboard';
 import SwipeCategories from './components/SwipeCategories';
 import Navigation from './components/Navigation';
-import { Transaction } from './components/CSVUpload';
-import { CategoriesData } from './lib/categorization';
+import type { Transaction } from './components/CSVUpload';
+import type { CategoriesData } from './lib/categorization';
 import { 
   getUserCategories, 
   getUserTransactions,

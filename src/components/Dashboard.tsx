@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import Charts from './Charts';
-import CSVUpload, { Transaction } from './CSVUpload';
+import CSVUpload from './CSVUpload';
+import type { Transaction } from './CSVUpload';
 import { 
   getUserProfile, 
   getUserCategories, 
   getUserTransactions,
   saveTransactions,
-  saveUserCategories,
-  updateTransaction,
   createUserProfile
 } from '../lib/firestore';
-import { CategoriesData, categorizeTransactions } from '../lib/categorization';
+import type { CategoriesData } from '../lib/categorization';
+import { categorizeTransactions } from '../lib/categorization';
 
 export default function Dashboard() {
   const { currentUser, logout } = useAuth();
@@ -77,31 +77,6 @@ export default function Dashboard() {
     }
   };
 
-  const handleCategoriesUpdate = async (newCategories: CategoriesData) => {
-    if (!currentUser) return;
-
-    try {
-      await saveUserCategories(currentUser.uid, newCategories);
-      setCategories(newCategories);
-    } catch (error) {
-      console.error('Error updating categories:', error);
-    }
-  };
-
-  const handleTransactionCategorized = async (transactionId: string, category: string) => {
-    if (!currentUser) return;
-
-    try {
-      await updateTransaction(currentUser.uid, transactionId, { category });
-      
-      // Update local state
-      setTransactions(prev => 
-        prev.map(t => t.id === transactionId ? { ...t, category } : t)
-      );
-    } catch (error) {
-      console.error('Error updating transaction:', error);
-    }
-  };
 
   const uncategorizedCount = transactions.filter(t => t.category === 'Uncategorized').length;
 

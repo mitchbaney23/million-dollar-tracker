@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import TinderCard from 'react-tinder-card';
-import { Transaction } from './CSVUpload';
-import { CategoriesData, addCategoryRule } from '../lib/categorization';
+import type { Transaction } from './CSVUpload';
+import type { CategoriesData } from '../lib/categorization';
+import { addCategoryRule } from '../lib/categorization';
 
 interface SwipeCategoriesProps {
   transactions: Transaction[];
@@ -79,7 +80,7 @@ export default function SwipeCategories({
         </div>
 
         <div className="relative h-96">
-          {uncategorizedTransactions.map((transaction, index) => (
+          {uncategorizedTransactions.map((transaction) => (
             <TinderCard
               key={transaction.id}
               onSwipe={(dir) => swiped(dir, transaction)}
